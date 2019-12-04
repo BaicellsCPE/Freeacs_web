@@ -8,13 +8,13 @@
         <side-nav></side-nav>
       </div>
       <div class="app_right">
-        <div class="breadcrumb">
+        <!-- <div class="breadcrumb">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>{{pathName}}</el-breadcrumb-item>
 
           </el-breadcrumb>
-        </div>
+        </div> -->
         <router-view></router-view>
       </div>
     </div>
@@ -25,7 +25,7 @@
 <script>
 import DataHeader from './components/common/DataHeader.vue'
 import SideNav from './components/common/SideNav.vue'
-import Nothing from './components/common/Nothing.vue'
+// import Nothing from './components/common/Nothing.vue'
 
 export default {
   name: 'app',
@@ -37,7 +37,7 @@ export default {
   components:{
     DataHeader,
     SideNav,
-    Nothing
+    // Nothing
   },
   watch: {
     '$route': function(){
@@ -56,11 +56,17 @@ export default {
     display: flex;
     flex-flow: column;
   }
+  .app_nav{
+    overflow-y: auto;
+    height: 850px;
+  }
+  .app_nav::-webkit-scrollbar {
+    display: none;/*隐藏滚动条*/
+  }
   .app_header{
     position: relative;
     flex: 0 0 auto;
     z-index: 2;
-
   }
   .app_header .title{
     margin-left: 16px;
@@ -73,8 +79,10 @@ export default {
   }
   .app_nav{
     position: relative;
-    flex: 0 0 280px;
-    background: #EFF2F7;
+    flex: 0 0 162px;
+    background: #ffffff;
+    border-right: 1px solid #dddddd;
+    padding: 5px; 
   }
   .app_right{
     flex: 1;

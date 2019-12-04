@@ -1,4 +1,3 @@
-<!-- 用户管理组件 -->
 
 <template>
     <div class="user_wrap">
@@ -6,23 +5,20 @@
         </el-radio-group>
         <div style="margin: 20px;"></div>
         <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-            <el-form-item label="公司名称 :">
+            <el-form-item label="服务组名 :">
                 <el-input class="input_name" v-model="formLabelAlign.name"></el-input>
             </el-form-item>
-            <el-form-item label="部门 :">
-                <el-input class="input_section" v-model="formLabelAlign.region"></el-input>
+            <el-form-item label="服务类型 :">
+                <el-input class="input_section" :disabled="true" v-model="formLabelAlign.region"></el-input>
             </el-form-item>
-            <el-form-item label="用户名 :">
-                <el-input class="input_user" :disabled="true" v-model="formLabelAlign.type"></el-input>
+            <el-form-item label="优先级 :">
+                <el-input class="input_user" v-model="formLabelAlign.type"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱 :">
+            <el-form-item label="厂商 :">
                 <el-input class="input_email" v-model="formLabelAlign.email"></el-input>
             </el-form-item>
             <el-form-item label="备注 :">
                 <el-input class="input_message" :rows="3" type="textarea" v-model="formLabelAlign.message"></el-input>
-            </el-form-item>
-            <el-form-item label="用户角色 :">
-                <el-input class="input_role" v-model="formLabelAlign.role"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="info" @click="submitForm('ruleForm2')">保存</el-button>
@@ -38,12 +34,11 @@
       return {
         labelPosition: 'right',
         formLabelAlign: {
-          name: '柏才邦技术有限公司',
-          region: 'Admin',
-          type: 'Baicells',
-          email: 'baicells@baicells.com',
-          message: '',
-          role: 'Admin_role'
+          name: '',
+          region: '参数服务',
+          type: '10',
+          email: 'baicells',
+          message: ''
         }
       };
     }

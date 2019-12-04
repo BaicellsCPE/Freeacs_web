@@ -1,7 +1,7 @@
 <template>
   <div class="testProject">
     <div class="function">
-      <el-row>
+      <!-- <el-row>
         <el-col :span="4">
           <div class="grid-content bg-purple">
             <el-input
@@ -12,49 +12,94 @@
           </div>
         </el-col>
         <el-col :span="20">
-          <el-button type="primary" @click.native="onNewClick">新建方案测试</el-button>
+          <el-button style="background-color: #45aeea; border-color: #45aeea;" type="primary" @click.native="onNewClick">新建测试</el-button>
         </el-col>
-      </el-row>
+      </el-row> -->
+      <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form-item label="厂商码 :">
+          <el-select size="small" style="width: 100px;" v-model="formInline.region" placeholder="Nothing">
+            <el-input size="small" style="width: 75px; margin-left: 5px;" v-model="formInline.search" placeholder=""></el-input>
+            <el-option label="998877" value="00"></el-option>
+            <el-option label="E47DEB" value="01"></el-option>
+            <el-option label="005043" value="02"></el-option>
+            <el-option label="A89352" value="03"></el-option>
+            <el-option label="5CF286" value="04"></el-option>
+            <el-option label="48BF74" value="05"></el-option>
+            <el-option label="526566" value="06"></el-option>
+            <el-option label="526564" value="07"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="产品类型 :">
+          <el-input size="small" v-model="formInline.user" placeholder=""></el-input>
+        </el-form-item>
+        <el-form-item label="序列号 :">
+          <el-input size="small" v-model="formInline.user" placeholder=""></el-input>
+        </el-form-item>
+        <el-form-item label="串码 :">
+          <el-input size="small" v-model="formInline.user" placeholder=""></el-input>
+        </el-form-item>
+        <el-form-item label="活动区域">
+          <el-select size="small" v-model="formInline.region" placeholder="">
+            <el-option label="" value=""></el-option>
+            <el-option label="已连接" value="11"></el-option>
+            <el-option label="未连接" value="22"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="info" @click="onSubmit">批量删除</el-button>
+          <el-button style="margin-right: 10px;" type="info" @click="onSubmit">导出</el-button>
+          <el-button type="info" @click="onSubmit">搜索</el-button>
+        </el-form-item>
+      </el-form>
     </div>
     <div id="table">
       <el-table
         :data="tableData"
         stripe
+        border
         style="width: 100%">
         <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
+        <el-table-column
           prop="id"
-          label="测试ID">
+          label="序列号">
+        </el-table-column>
+        <el-table-column
+          prop="imei"
+          label="IMEI">
         </el-table-column>
         <el-table-column
           prop="testName"
-          label="测试名称">
+          label="厂商码">
         </el-table-column>
         <el-table-column
           prop="types"
-          label="全部类型">
+          label="产品类型">
         </el-table-column>
         <el-table-column
           prop="testUser"
-          label="测试用户，流量"
+          label="厂商"
           width=140>
         </el-table-column>
         <el-table-column
           prop="projectID"
-          label="方案ID，名称，流量"
+          label="注册时间"
           width=180>
         </el-table-column>
         <el-table-column
           prop="create"
-          label="创建人">
+          label="最后连接时间">
         </el-table-column>
         <el-table-column
           prop="lastUpdate"
-          label="最后更新"
+          label="IP"
           width=150>
         </el-table-column>
         <el-table-column
           prop="status"
-          label="全部状态">
+          label="状态">
         </el-table-column>
 
         <el-table-column
@@ -108,8 +153,11 @@
          resource: '',
          desc: ''
        },
-       formLabelWidth: '120px'
-
+        formLabelWidth: '120px',
+        formInline: {
+          user: '',
+          region: ''
+        }
       }
 
     },
@@ -143,6 +191,9 @@
       onNewClick: function(){
         this.dialogTitle = "新建方案";
         this.isDialogShow = true;
+      },
+      onSubmit() {
+        console.log('submit!');
       }
     }
   }
